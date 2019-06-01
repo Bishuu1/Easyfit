@@ -8,7 +8,7 @@ const app = express();
 
 //Configuracion
 app.set('port', process.env.PORT || 3000);
-app.set('viws', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs',exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'), 'layouts'),
@@ -32,10 +32,10 @@ app.use((req, res, next) => {
 //Route
 app.use(require('./routes'));
 app.use(require('./routes/authenthication.js'));
-app.use(require('./routes/routine.js'));
+app.use(require('./routes/easyfit.js'));
 
 //Public
-app.use(express.static(path.join(__dirname, 'public')));git 
+app.use(express.static(path.join(__dirname, 'public'))); 
 
 //Starting the server
 app.listen(app.get('port'), () => {
