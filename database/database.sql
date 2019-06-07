@@ -12,7 +12,7 @@ CREATE TABLE UserData(
     username_fk VARCHAR(16) NOT NULL,
     Name VARCHAR(255) NOT NULL,
     Dateob DATE, 
-    Sexgender VARCHAR (15) NOT NULL, 
+    SexualGender VARCHAR (15) NOT NULL, 
     Email VARCHAR (255) NOT NULL,
     PRIMARY KEY (username_fk),
     FOREIGN KEY (username_fk) REFERENCES UserPassword(username) 
@@ -22,6 +22,14 @@ CREATE TABLE UserPhysical(
     username_fk VARCHAR(16) NOT NULL,
     Weightkg INT (3) NOT NULL,
     Heightcm INT (3) NOT NULL,
+    PRIMARY KEY (username_fk),
+    FOREIGN KEY (username_fk) REFERENCES UserPassword(username)
+);
+
+CREATE TABLE UserImc(
+    username_fk VARCHAR(16) NOT NULL,
+    IMC FLOAT (3) NOT NULL,
+    FatPercent FLOAT (3) NOT NULL,
     PRIMARY KEY (username_fk),
     FOREIGN KEY (username_fk) REFERENCES UserPassword(username)
 );
@@ -42,3 +50,8 @@ CREATE TABLE Routine(
     FOREIGN KEY (username_fk) REFERENCES UserPassword(username),
     FOREIGN KEY (Id_fk) REFERENCES Exercise(Id)
 );
+
+
+
+
+
