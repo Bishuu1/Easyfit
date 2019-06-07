@@ -22,7 +22,7 @@ router.put('/profile', (req,res) => {
 
 router.get('/profile', (req,res) => {
     const { username } = req.body;
-    mysqlConnection.query('SELECET * FROM Routie where Username_fk = ? ', [username]);
+    mysqlConnection.query('SELECET * FROM Routine where Username_fk = ? ', [username]);
 });
 
 
