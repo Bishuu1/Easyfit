@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const exphbs = require('express-handlebars');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 //Inicializacion
 const app = express();
@@ -12,7 +12,8 @@ app.set('port', process.env.PORT || 3000);
 
 //Middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json());
 
 //Variables Globales
