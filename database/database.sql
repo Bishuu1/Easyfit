@@ -10,28 +10,28 @@ CREATE TABLE UserPassword(
 
 CREATE TABLE UserData(
     username_fk VARCHAR(16) NOT NULL,
-    Name VARCHAR(255) NOT NULL,
-    Dateob DATE, 
-    SexualGender VARCHAR (15) NOT NULL, 
-    Email VARCHAR (255) NOT NULL,
+    Name VARCHAR(255) DEFAULT NULL,
+    Dateob VARCHAR(20) DEFAULT NULL, 
+    SexualGender VARCHAR (15) DEFAULT NULL, 
+    Email VARCHAR (255) DEFAULT NULL,
     PRIMARY KEY (username_fk),
-    FOREIGN KEY (username_fk) REFERENCES UserPassword(username) 
+    FOREIGN KEY (username_fk) REFERENCES UserPassword(username) ON DELETE CASCADE
 );
 
 CREATE TABLE UserPhysical(
     username_fk VARCHAR(16) NOT NULL,
-    Weightkg INT (3) NOT NULL,
-    Heightcm INT (3) NOT NULL,
+    Weightkg INT (3) DEFAULT NULL,
+    Heightcm INT (3) DEFAULT NULL,
     PRIMARY KEY (username_fk),
-    FOREIGN KEY (username_fk) REFERENCES UserPassword(username)
+    FOREIGN KEY (username_fk) REFERENCES UserPassword(username) ON DELETE CASCADE
 );
 
 CREATE TABLE UserImc(
     username_fk VARCHAR(16) NOT NULL,
-    IMC FLOAT (3) NOT NULL,
-    FatPercent FLOAT (3) NOT NULL,
+    IMC FLOAT (3) DEFAULT NULL,
+    FatPercent FLOAT (3) DEFAULT NULL,
     PRIMARY KEY (username_fk),
-    FOREIGN KEY (username_fk) REFERENCES UserPassword(username)
+    FOREIGN KEY (username_fk) REFERENCES UserPassword(username) ON DELETE CASCADE
 );
 
 CREATE TABLE Exercise(
@@ -47,7 +47,7 @@ CREATE TABLE Routine(
     Username_fk VARCHAR(16) NOT NULL,
     Id_fk INT(4) NOT NULL, 
     PRIMARY KEY (id),
-    FOREIGN KEY (username_fk) REFERENCES UserPassword(username),
+    FOREIGN KEY (username_fk) REFERENCES UserPassword(username) ON DELETE CASCADE,
     FOREIGN KEY (Id_fk) REFERENCES Exercise(Id)
 );
 
