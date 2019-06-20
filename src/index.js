@@ -2,17 +2,19 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cors = require("cors");
 
 //Inicializacion
 const app = express();
 
 //Configuracion
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 9000);
 
 //Middlewares
 app.use(morgan( 'dev' ));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 
 //Variables Globales
