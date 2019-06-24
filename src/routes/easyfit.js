@@ -14,7 +14,7 @@ router.post('/signup', (req,res) => {
 });
 
 router.get('/signup', (req,res) => {
-    res.send('Si funciona pero necesito ayuda');
+    res.send('nada');
 });
 
 router.put('/profile', (req,res) => {
