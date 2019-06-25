@@ -11,7 +11,7 @@ router.post('/signup', (req,res) => {
     mysqlConnection.query('INSERT INTO UserData values (?,?,?,?,?)', [ username, Name, Dateob, SexualGender, Email ]);
     mysqlConnection.query('INSERT INTO UserPhysical values (?,?,?)', [ username, Weightkg, Heightcm ]);
     res.send('Usuario Creado'); 
-});
+}); 
 
 router.get('/signup', (req,res) => {
     res.send('nada');
