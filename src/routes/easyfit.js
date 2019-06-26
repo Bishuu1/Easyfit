@@ -6,10 +6,10 @@ const mysqlConnection = require('../database');
 
 
 router.post('/signup', (req,res) => {
-    const { username, password, Name, Dateob, SexualGender, Email, Weightkg, Heightcm } = req.body;
+    const { username, password, Email } = req.body;
     mysqlConnection.query('INSERT INTO UserPassword values (?,?)', [ username, password ]);
-    mysqlConnection.query('INSERT INTO UserData values (?,?,?,?,?)', [ username, Name, Dateob, SexualGender, Email ]);
-    mysqlConnection.query('INSERT INTO UserPhysical values (?,?,?)', [ username, Weightkg, Heightcm ]);
+    mysqlConnection.query('INSERT INTO UserData (username_fk, Email) values (?,?)', [ username, Email ]);
+    mysqlConnection.query('INSERT INTO UserPhysical (username_fk) values (?)', [ username ]);
     res.send('Usuario Creado'); 
 }); 
 
