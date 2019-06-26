@@ -51,6 +51,9 @@ CREATE TABLE Routine(
     FOREIGN KEY (Id_fk) REFERENCES Exercise(Id)
 );
 
+ALTER TABLE UserData
+ADD UNIQUE (Email);
+
 
 
 
