@@ -13,7 +13,7 @@ router.post('/signup', (req,res) => {
     res.send('Usuario Creado'); 
 });
 
-router.get('/login', (req,res) => {
+router.post('/login', (req,res) => {
     const { username, password } = req.body;
     console.log("se realiza la consulta");
     mysqlConnection.query('SELECT password FROM UserPassword where username = ? and password = ? ', [ username, password ], function (error, results, fields) {
