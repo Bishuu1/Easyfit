@@ -11,13 +11,25 @@ router.post('/signup', (req,res) => {
     mysqlConnection.query('INSERT INTO UserData (username_fk, Email) values (?,?)', [ username, Email ]);
     mysqlConnection.query('INSERT INTO UserPhysical (username_fk) values (?)', [ username ]);
     res.send('Usuario Creado'); 
-}); 
-
-router.get('/signup', (req,res) => {
-    res.send('nada');
 });
 
-router.put('/profile', (req,res) => {
+router.get('/login', (req,res) => {
+    const { username, password } = req.body;
+    console.log("se realiza la consulta");
+    mysqlConnection.query('SELECT password FROM UserPassword where username = ? and password = ? ', [ username, password ], function (error, results, fields) {
+        console.log(error);
+        console.log(results);
+        console.log(results[0]);
+        if (results[0] == undefined){
+            res.send("error 1");
+        }
+        else{
+            res.send("log");
+        }
+    });
+});
+
+router.post('/profile', (req,res) => {
     const { username, password, Name, Dateob, SexualGender, Email, Weightkg, Heightcm } = req.body;
     const UserPasswordup = {
         password,

@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS Easy_fit;
 USE Easy_fit;
 
 CREATE TABLE UserPassword(
-    username VARCHAR(16) NOT NULL,
+    username VARCHAR(16) NOT NULL
     password VARCHAR(30) NOT NULL,
     PRIMARY KEY (username)
 );

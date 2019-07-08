@@ -22,7 +22,6 @@ app.use(cors());
 
 //Route
 app.use(require('./routes/index.js'));
-app.use(require('./routes/authenthication.js'));
 app.use(require('./routes/easyfit.js'));
 
 //Public
