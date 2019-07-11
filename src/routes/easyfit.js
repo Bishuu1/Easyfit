@@ -16,38 +16,33 @@ router.post('/signup', (req,res) => {
 router.post('/login', (req,res) => {
     const { username, password } = req.body;
     console.log("se realiza la consulta");
-    mysqlConnection.query('SELECT password FROM UserPassword where username = ? and password = ? ', [ username, password ], function (error, results, fields) {
+    mysqlConnection.query('SELECT username FROM UserPassword where username = ? and password = ? ', [ username, password ], function (error, results, fields) {
         console.log(error);
         console.log(results);
         console.log(results[0]);
+        
         if (results[0] == undefined){
-            res.send("error 1");
+            res.send({log:false});
         }
         else{
-            res.send("log");
+            const id = results[0].username
+            res.send({id , log:true});
+            const Usuario = results[0].username;
         }
     });
 });
 
-router.post('/profile', (req,res) => {
-    const { username, password, Name, Dateob, SexualGender, Email, Weightkg, Heightcm } = req.body;
-    const UserPasswordup = {
-        password,
-    };
-    const UserDataup = {
-        Name,
-        Dateob,
-        SexualGender,
-        Email
-    };
-    const UserPhysicalup = {
-        Weightkg,
-        Heightcm
-    };
-    mysqlConnection.query('UPDATE UserPassword set ? where username = ?', [ UserPasswordup, username ]);
+router.get('/profile:id', (req,res) => {
+    const { id } = req.params;
+    mysqlConnection.query('Select * FROM UserData, UserPhysical where username_fks = ?', [id], function(error, results, fields){
+        console.log(error);
+        console.log(results[0]);
+        res.send(results[0]);
+    });
+    /*mysqlConnection.query('UPDATE UserPassword set ? where username = ?', [ UserPasswordup, username ]);
     mysqlConnection.query('UPDATE UserData set ? where username_fk = ?', [ UserDataup, username ]);
     mysqlConnection.query('UPDATE UserPhysical set ? where username_fk = ?', [ UserPhysicalup, username ]);
-    res.send ('Usuario Actualizado');
+    res.send ('Usuario Actualizado');*/
 });
 
 
