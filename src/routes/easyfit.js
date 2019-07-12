@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-
 const mysqlConnection = require('../database');
-
 
 router.post('/signup', (req,res) => {
     const { username, password, Email } = req.body;
@@ -27,12 +24,12 @@ router.post('/login', (req,res) => {
         else{
             const id = results[0].username
             res.send({id , log:true});
-            const Usuario = results[0].username;
         }
     });
 });
 
 router.get('/profile:id', (req,res) => {
+    res.render ('/perfil')
     const { id } = req.params;
     mysqlConnection.query('Select * FROM UserData, UserPhysical where username_fks = ?', [id], function(error, results, fields){
         console.log(error);
